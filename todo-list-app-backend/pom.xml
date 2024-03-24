@@ -10,7 +10,7 @@
 	</parent>
 	<groupId>com.juliantsugami</groupId>
 	<artifactId>todo-list-app-backend</artifactId>
-	<version>0.0.1-SNAPSHOT</version>
+	<version>1.0.0</version>
 	<name>todo-list-app-backend</name>
 	<description>REST API for my todo list app</description>
 	<properties>
@@ -19,7 +19,13 @@
 	<dependencies>
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
-			<artifactId>spring-boot-starter</artifactId>
+			<artifactId>spring-boot-starter-web</artifactId>
+		</dependency>
+
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-web</artifactId>
+			<version>6.1.5</version>
 		</dependency>
 
 		<dependency>

@@ -1,10 +1,10 @@
 <h1>To-Do List</h1>
 <script lang="ts">
-  import { onMount } from 'svelte';
+  import { onMount} from 'svelte';
   import { writable } from 'svelte/store';
 
   // Define a writable store to hold todo items
-  const todos = writable([]);
+  let todos = writable([]);
 
   // Function to fetch todo items from the API
   async function fetchTodos() {
@@ -17,15 +17,30 @@
     }
   }
 
+  async function handleDeleteClick(id) {
+    try {
+      const response = await fetch(`http://localhost:8080/v1/items/${id}`, {
+        method: 'DELETE',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+      });
+      todos.set($todos.filter(todo => todo.id != id))
+    } catch (error) {
+      // Handle network or other errors
+      console.error('Error occurred:', error);
+    }
+  }
+
   // Fetch todos when the component is mounted
   onMount(fetchTodos);
 
 </script>
 
 <ul>
-  {#each $todos as todo}
+  {#each $todos as todo (todo.id)}
     <li>{todo.description}</li>
     <input type="checkbox" bind:checked={todo.isDone}>
+    <button on:click={handleDeleteClick(todo.id)}>Delete</button>
   {/each}
 </ul>
-

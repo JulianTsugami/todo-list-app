@@ -1,19 +1,17 @@
 <h1>To-Do List</h1>
 <script lang="ts">
-  import { onMount} from 'svelte';
+  import { onMount } from 'svelte';
   import { writable } from 'svelte/store';
 
-  // Define a writable store to hold todo items
-  let todos = writable([]);
+  let items = writable([]);
 
-  // Function to fetch todo items from the API
-  async function fetchTodos() {
+  async function fetchItems() {
     try {
       const response = await fetch('http://localhost:8080/v1/items/');
       const data = await response.json();
-      todos.set(data); // Update the todos store with fetched data
+      items.set(data);
     } catch (error) {
-      console.error('Error fetching todos:', error);
+      console.error('Error fetching items:', error);
     }
   }
 
@@ -25,22 +23,20 @@
           'Content-Type': 'application/json'
         },
       });
-      todos.set($todos.filter(todo => todo.id != id))
+      items.set($items.filter(item => item.id != id))
     } catch (error) {
-      // Handle network or other errors
       console.error('Error occurred:', error);
     }
   }
 
-  // Fetch todos when the component is mounted
-  onMount(fetchTodos);
+  onMount(fetchItems);
 
 </script>
 
 <ul>
-  {#each $todos as todo (todo.id)}
-    <li>{todo.description}</li>
-    <input type="checkbox" bind:checked={todo.isDone}>
-    <button on:click={handleDeleteClick(todo.id)}>Delete</button>
+  {#each $items as item (item.id)}
+    <li>{item.description}</li>
+    <input type="checkbox" bind:checked={item.isDone}>
+    <button on:click={handleDeleteClick(item.id)}>Delete</button>
   {/each}
 </ul>

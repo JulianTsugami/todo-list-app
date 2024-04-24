@@ -9,10 +9,10 @@ import java.util.Optional;
 
 @Controller
 @RequestMapping(path = "/v1/items")
+@CrossOrigin
 public class ItemController {
     @Autowired
     private ItemRepository itemRepository;
-
     @GetMapping(path = { "", "/" })
     public @ResponseBody Iterable<Item> getAllItems() {
         return itemRepository.findAll();

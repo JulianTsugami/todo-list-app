@@ -2,7 +2,7 @@
 ## Tech Stack
 ### Front-end
 <div>
-  <img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/svelte/svelte-original.svg" alt="Svelte" width="200"/>
+  <img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/svelte/react-original.svg" alt="React" width="200"/>
   <img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/typescript/typescript-original.svg" alt="TypeScript" width="200"/>
 </div>
 
